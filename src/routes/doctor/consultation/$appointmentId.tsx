@@ -523,6 +523,7 @@ function ConsultationPage() {
 
   const handleRemoveStagedItem = (index: number) => {
     const item = stagedItems[index];
+    if (!item) return;
     setStagedItems((prev) => prev.filter((_, i) => i !== index));
     toast.info(`Removed ${item.medicine_name} from prescription`);
   };

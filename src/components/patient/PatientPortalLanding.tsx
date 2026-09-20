@@ -1,12 +1,5 @@
 import { useState } from "react";
-import {
-  Search,
-  Loader2,
-  HeartPulse,
-  ShieldCheck,
-  LockKeyhole,
-  Sparkles,
-} from "lucide-react";
+import { Search, Loader2, HeartPulse, ShieldCheck, LockKeyhole, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 type PatientPortalLandingProps = {
@@ -45,12 +38,26 @@ function ToothIllustration() {
           fill="none"
         />
         <defs>
-          <linearGradient id="toothGradient" x1="24" y1="12" x2="96" y2="128" gradientUnits="userSpaceOnUse">
+          <linearGradient
+            id="toothGradient"
+            x1="24"
+            y1="12"
+            x2="96"
+            y2="128"
+            gradientUnits="userSpaceOnUse"
+          >
             <stop stopColor="#818cf8" />
             <stop offset="0.5" stopColor="#a78bfa" />
             <stop offset="1" stopColor="#c084fc" />
           </linearGradient>
-          <linearGradient id="toothStroke" x1="24" y1="12" x2="96" y2="128" gradientUnits="userSpaceOnUse">
+          <linearGradient
+            id="toothStroke"
+            x1="24"
+            y1="12"
+            x2="96"
+            y2="128"
+            gradientUnits="userSpaceOnUse"
+          >
             <stop stopColor="#6366f1" />
             <stop offset="1" stopColor="#a855f7" />
           </linearGradient>
@@ -62,10 +69,16 @@ function ToothIllustration() {
         <Sparkles className="size-4 text-primary/40 animate-pulse" />
       </div>
       <div className="absolute bottom-10 left-4">
-        <Sparkles className="size-3 text-primary-glow/50 animate-pulse" style={{ animationDelay: "1s" }} />
+        <Sparkles
+          className="size-3 text-primary-glow/50 animate-pulse"
+          style={{ animationDelay: "1s" }}
+        />
       </div>
       <div className="absolute top-12 left-8">
-        <div className="size-2 rounded-full bg-primary/20 animate-pulse" style={{ animationDelay: "0.5s" }} />
+        <div
+          className="size-2 rounded-full bg-primary/20 animate-pulse"
+          style={{ animationDelay: "0.5s" }}
+        />
       </div>
     </div>
   );
@@ -121,8 +134,8 @@ export function PatientPortalLanding({ onSubmit, isSearching }: PatientPortalLan
             </h1>
 
             <p className="text-sm sm:text-base text-muted-foreground leading-relaxed max-w-lg mx-auto lg:mx-0">
-              Access your SmileCare prescription, medication instructions, clinical summary,
-              and follow-up information securely in one place.
+              Access your SmileCare prescription, medication instructions, clinical summary, and
+              follow-up information securely in one place.
             </p>
           </div>
 
@@ -143,7 +156,12 @@ export function PatientPortalLanding({ onSubmit, isSearching }: PatientPortalLan
             </p>
           </div>
 
-          <form onSubmit={handleSubmit} className="space-y-5" role="form" aria-label="Prescription search">
+          <form
+            onSubmit={handleSubmit}
+            className="space-y-5"
+            role="form"
+            aria-label="Prescription search"
+          >
             {/* Patient Code */}
             <div className="space-y-1.5">
               <label htmlFor="portal-patient-code" className="text-xs font-bold text-foreground">
@@ -156,7 +174,7 @@ export function PatientPortalLanding({ onSubmit, isSearching }: PatientPortalLan
                 value={patientCode}
                 onChange={(e) => {
                   setPatientCode(e.target.value);
-                  if (errors.patientCode) setErrors((prev) => ({ ...prev, patientCode: undefined }));
+                  if (errors.patientCode) setErrors((prev) => ({ ...prev, patientCode: "" }));
                 }}
                 aria-describedby={errors.patientCode ? "patient-code-error" : "patient-code-help"}
                 aria-invalid={!!errors.patientCode}
@@ -165,7 +183,11 @@ export function PatientPortalLanding({ onSubmit, isSearching }: PatientPortalLan
                 required
               />
               {errors.patientCode ? (
-                <p id="patient-code-error" className="text-xs text-destructive flex items-center gap-1" role="alert">
+                <p
+                  id="patient-code-error"
+                  className="text-xs text-destructive flex items-center gap-1"
+                  role="alert"
+                >
                   <span className="size-1 rounded-full bg-destructive inline-block" />
                   {errors.patientCode}
                 </p>
@@ -178,7 +200,10 @@ export function PatientPortalLanding({ onSubmit, isSearching }: PatientPortalLan
 
             {/* Appointment Code */}
             <div className="space-y-1.5">
-              <label htmlFor="portal-appointment-code" className="text-xs font-bold text-foreground">
+              <label
+                htmlFor="portal-appointment-code"
+                className="text-xs font-bold text-foreground"
+              >
                 Appointment Code
               </label>
               <input
@@ -188,7 +213,8 @@ export function PatientPortalLanding({ onSubmit, isSearching }: PatientPortalLan
                 value={appointmentCode}
                 onChange={(e) => {
                   setAppointmentCode(e.target.value);
-                  if (errors.appointmentCode) setErrors((prev) => ({ ...prev, appointmentCode: undefined }));
+                  if (errors.appointmentCode)
+                    setErrors((prev) => ({ ...prev, appointmentCode: "" }));
                 }}
                 aria-describedby={errors.appointmentCode ? "appt-code-error" : "appt-code-help"}
                 aria-invalid={!!errors.appointmentCode}
@@ -197,7 +223,11 @@ export function PatientPortalLanding({ onSubmit, isSearching }: PatientPortalLan
                 required
               />
               {errors.appointmentCode ? (
-                <p id="appt-code-error" className="text-xs text-destructive flex items-center gap-1" role="alert">
+                <p
+                  id="appt-code-error"
+                  className="text-xs text-destructive flex items-center gap-1"
+                  role="alert"
+                >
                   <span className="size-1 rounded-full bg-destructive inline-block" />
                   {errors.appointmentCode}
                 </p>
@@ -231,7 +261,8 @@ export function PatientPortalLanding({ onSubmit, isSearching }: PatientPortalLan
 
           {/* Helper text */}
           <p className="mt-5 text-center text-[0.65rem] text-muted-foreground leading-relaxed">
-            Your patient and appointment codes can be found on your SmileCare appointment confirmation.
+            Your patient and appointment codes can be found on your SmileCare appointment
+            confirmation.
           </p>
         </div>
 
@@ -244,7 +275,10 @@ export function PatientPortalLanding({ onSubmit, isSearching }: PatientPortalLan
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
             <TrustItem icon={<ShieldCheck className="size-4" />} label="Secure Access" />
-            <TrustItem icon={<LockKeyhole className="size-4" />} label="Private Medical Information" />
+            <TrustItem
+              icon={<LockKeyhole className="size-4" />}
+              label="Private Medical Information"
+            />
             <TrustItem icon={<HeartPulse className="size-4" />} label="SmileCare Care Team" />
           </div>
         </div>

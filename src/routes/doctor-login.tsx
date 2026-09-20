@@ -161,7 +161,7 @@ function DoctorLoginPage() {
                     value={email}
                     onChange={(e) => {
                       setEmail(e.target.value);
-                      if (errors.email) setErrors({ ...errors, email: undefined });
+                      if (errors.email) setErrors({ ...errors, email: "" });
                     }}
                     placeholder="anaya@smilecare.com"
                     className={cn(
@@ -194,7 +194,7 @@ function DoctorLoginPage() {
                     value={password}
                     onChange={(e) => {
                       setPassword(e.target.value);
-                      if (errors.password) setErrors({ ...errors, password: undefined });
+                      if (errors.password) setErrors({ ...errors, password: "" });
                     }}
                     placeholder="••••••••"
                     className={cn(

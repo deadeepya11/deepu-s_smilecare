@@ -102,7 +102,7 @@ function AppointmentPage() {
   });
 
   // Inline Validation Errors
-  const [errors, setErrors] = useState<Record<string, string>>({});
+  const [errors, setErrors] = useState<Partial<Record<keyof FormState, string>>>({});
 
   // Track the current time selection so slot loading doesn't need it in its deps
   const selectedTimeRef = useRef(formData.time);
@@ -125,6 +125,7 @@ function AppointmentPage() {
           setDbDoctors(data);
           // Set initial doctor if not already selected
           const first = data[0];
+          if (!first) return;
           setFormData((prev) => ({
             ...prev,
             doctorId: prev.doctorId || first.id,
@@ -199,7 +200,7 @@ function AppointmentPage() {
 
   // Validation Logic for Step 1
   const validateStep1 = (): boolean => {
-    const errs: Record<string, string> = {};
+    const errs: Partial<Record<keyof FormState, string>> = {};
 
     if (!formData.name.trim()) {
       errs.name = "Full name is required";
@@ -237,7 +238,7 @@ function AppointmentPage() {
 
   // Validation Logic for Step 2
   const validateStep2 = (): boolean => {
-    const errs: Record<string, string> = {};
+    const errs: Partial<Record<keyof FormState, string>> = {};
 
     if (!formData.service) {
       errs.service = "Please select a service";
@@ -265,7 +266,7 @@ function AppointmentPage() {
 
   // Validation Logic for Step 3
   const validateStep3 = (): boolean => {
-    const errs: Record<string, string> = {};
+    const errs: Partial<Record<keyof FormState, string>> = {};
 
     if (!formData.reason.trim()) {
       errs.reason = "Please enter the reason for your visit or symptoms";
@@ -334,6 +335,9 @@ function AppointmentPage() {
 
       if (data && data.length > 0) {
         const appointment = data[0];
+        if (!appointment) {
+          throw new Error("No appointment data returned from server.");
+        }
         setBookingSuccess({
           appointmentCode: appointment.appointment_code,
           patientCode: appointment.patient_code,
