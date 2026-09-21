@@ -12,4 +12,7 @@ export default defineConfig({
     // nitro/vite builds from this
     server: { entry: "server" },
   },
+  // Deploy target for Vercel: uses Nitro's Vercel Build Output API preset,
+  // which emits the deployable bundle into .vercel/output (Node.js runtime).
+  nitro: { preset: "vercel" },
 });
